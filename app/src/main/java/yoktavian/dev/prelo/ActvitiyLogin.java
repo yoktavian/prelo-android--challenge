@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import yoktavian.dev.prelo.models.DataModel;
 import yoktavian.dev.prelo.models.DataUser;
 import yoktavian.dev.prelo.networking.ApiRequest;
+import yoktavian.dev.prelo.session.LoginSession;
 
 public class ActvitiyLogin extends AppCompatActivity {
 
@@ -26,8 +27,8 @@ public class ActvitiyLogin extends AppCompatActivity {
         setContentView(R.layout.activity_actvitiy_login);
 
         relativeLayout              = (RelativeLayout) findViewById(R.id.relativeLayout);
-        edttext_email      = (EditText) findViewById(R.id.edittext_email);
-        edttext_password   = (EditText) findViewById(R.id.edittext_password);
+        edttext_email               = (EditText) findViewById(R.id.edittext_email);
+        edttext_password            = (EditText) findViewById(R.id.edittext_password);
         Button button_login         = (Button) findViewById(R.id.button_login);
         api = new ApiRequest(this);
 
@@ -68,7 +69,10 @@ public class ActvitiyLogin extends AppCompatActivity {
     }
 
     public void _onLoginSuccess(DataModel data){
-        Log.d("res", data.getProfile().getPict());
+        LoginSession session = new LoginSession(ActvitiyLogin.this);
+        session.setLoginSession(data.getFullname(), data.getUsername(), data.getEmail(), data.getToken(),
+                data.getAddress().getSubdistrict_name()+", "
+                        +data.getAddress().getRegion_name()+"," +", "+data.getAddress().getProvince_name(), data.getProfile().getPict());
     }
 
     public void _onLoginFailed(){
