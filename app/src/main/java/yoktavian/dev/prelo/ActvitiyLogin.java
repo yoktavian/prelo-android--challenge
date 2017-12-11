@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import yoktavian.dev.prelo.models.DataModel;
+import yoktavian.dev.prelo.models.DataUser;
 import yoktavian.dev.prelo.networking.ApiRequest;
 
 public class ActvitiyLogin extends AppCompatActivity {
@@ -63,5 +65,17 @@ public class ActvitiyLogin extends AppCompatActivity {
     private void _doLogin(String username, String password){
         Log.d("res", "login");
         api.doLogin(username, password);
+    }
+
+    public void _onLoginSuccess(DataModel data){
+        Log.d("res", data.getProfile().getPict());
+    }
+
+    public void _onLoginFailed(){
+        displayNotice("User dan password salah!");
+    }
+
+    public void _onSomeThingWrong(){
+        displayNotice("Error!");
     }
 }

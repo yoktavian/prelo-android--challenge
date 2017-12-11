@@ -1,5 +1,6 @@
 package yoktavian.dev.prelo.networking;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
@@ -11,6 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import yoktavian.dev.prelo.ActvitiyLogin;
 import yoktavian.dev.prelo.models.DataUser;
 
 /**
@@ -20,11 +22,11 @@ import yoktavian.dev.prelo.models.DataUser;
 public class ApiRequest {
 
     private static Retrofit retrofit = null;
-    public static Context context;
+    public static Context mcontext;
     private ApiClient apiClient;
 
     public ApiRequest(Context mcontext){
-        context = mcontext;
+        this.mcontext = mcontext;
     }
 
     public static Retrofit getClient(String baseUrl) {
@@ -48,15 +50,15 @@ public class ApiRequest {
             @Override
             public void onResponse(Call<DataUser> call, Response<DataUser> response) {
                 if (response.isSuccessful()) {
-                    Log.d("res", "success");
+                    ((ActvitiyLogin)mcontext)._onLoginSuccess(response.body().getData());
                 } else {
-                    Log.d("res", "failed");
+                    ((ActvitiyLogin)mcontext)._onLoginFailed();
                 }
             }
 
             @Override
             public void onFailure(Call<DataUser> call, Throwable t) {
-                Log.d("res", "error");
+                ((ActvitiyLogin)mcontext)._onSomeThingWrong();
             }
         });
     }

@@ -9,9 +9,9 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class DataModel {
-//    @SerializedName("profile")
-//    @Expose
-//    private Profil profile;
+    @SerializedName("profile")
+    @Expose
+    private Profil profile;
 
     @SerializedName("username")
     @Expose
@@ -38,17 +38,17 @@ public class DataModel {
         return fullname;
     }
 
-//    public Profil getProfile() {
-//        return profile;
-//    }
-//
-//    public class Profil {
-//        @SerializedName("pict")
-//        @Expose
-//        private String pict;
-//
-//        public String getPict() {
-//            return pict;
-//        }
-//    }
+    public Profil getProfile() {
+        return profile;
+    }
+
+    public class Profil {
+        @SerializedName("pict")
+        @Expose
+        private String pict;
+
+        public String getPict() {
+            return pict;
+        }
+    }
 }

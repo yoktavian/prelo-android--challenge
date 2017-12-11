@@ -14,13 +14,13 @@ import java.util.List;
 public class DataUser {
     @SerializedName("_data")
     @Expose
-    private JsonObject json;
+    private DataModel json;
 
-    public JsonObject getData(){
+    public DataModel getData(){
         return json;
     }
 
-    public void setData(JsonObject json){
+    public void setData(DataModel json){
         this.json = json;
     }
 }
