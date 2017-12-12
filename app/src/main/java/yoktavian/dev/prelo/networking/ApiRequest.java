@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -13,6 +16,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import yoktavian.dev.prelo.ActvitiyLogin;
+import yoktavian.dev.prelo.HomeActivity;
+import yoktavian.dev.prelo.models.DataLoveList;
 import yoktavian.dev.prelo.models.DataUser;
 
 /**
@@ -59,6 +64,31 @@ public class ApiRequest {
             @Override
             public void onFailure(Call<DataUser> call, Throwable t) {
                 ((ActvitiyLogin)mcontext)._onSomeThingWrong();
+            }
+        });
+    }
+
+
+    public void getLoveList(String token){
+        apiClient = ApiUtils.getAPIClient();
+
+        Map<String, String> map = new HashMap<>();
+        map.put("Authorization", "Token "+token);
+
+        Call<DataLoveList> call = apiClient.getLoveData(map);
+        call.enqueue(new Callback<DataLoveList>() {
+            @Override
+            public void onResponse(Call<DataLoveList> call, Response<DataLoveList> response) {
+                if (response.isSuccessful()) {
+                    ((HomeActivity)mcontext)._onRequestSuccess(response.body().getList());
+                } else {
+                    Log.d("res", "failed");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataLoveList> call, Throwable t) {
+                Log.d("res", "error");
             }
         });
     }
