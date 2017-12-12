@@ -29,9 +29,9 @@ public class LoginSession {
         prefsEditor.putString(Session_fullname, Ses_fullname);
         prefsEditor.putString(Session_username, Ses_username);
         prefsEditor.putString(Session_email, Ses_email);
-        prefsEditor.putString(Session_alamat, Ses_token);
+        prefsEditor.putString(Session_alamat, Ses_alamat);
         prefsEditor.putString(Session_url_avatar, url_avatar);
-        prefsEditor.putString(Session_token, Ses_alamat);
+        prefsEditor.putString(Session_token, Ses_token);
         prefsEditor.commit();
     }
 

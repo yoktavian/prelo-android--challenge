@@ -1,5 +1,6 @@
 package yoktavian.dev.prelo;
 
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -72,7 +73,9 @@ public class ActvitiyLogin extends AppCompatActivity {
         LoginSession session = new LoginSession(ActvitiyLogin.this);
         session.setLoginSession(data.getFullname(), data.getUsername(), data.getEmail(), data.getToken(),
                 data.getAddress().getSubdistrict_name()+", "
-                        +data.getAddress().getRegion_name()+"," +", "+data.getAddress().getProvince_name(), data.getProfile().getPict());
+                        +data.getAddress().getRegion_name()+", " +data.getAddress().getProvince_name(), data.getProfile().getPict());
+        Intent i = new Intent(ActvitiyLogin.this, HomeActivity.class);
+        startActivity(i);
     }
 
     public void _onLoginFailed(){
