@@ -17,7 +17,7 @@
             android:id="@+id/edittext_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="email"
+            android:hint="email/username"
             android:gravity="center"
             />
 

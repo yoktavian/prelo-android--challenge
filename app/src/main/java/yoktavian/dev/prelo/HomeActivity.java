@@ -4,7 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -24,13 +27,17 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<LoveListModel> data = new ArrayList<>();
     private AdapterLoveList adapter;
-    private ApiRequest apiRequest;
+    private ApiRequest api;
     private LoginSession session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        session = new LoginSession(HomeActivity.this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(session.getSes_username());
+
         avatar          = (CircleImageView) findViewById(R.id.avatar);
         txt_fullname    = (TextView) findViewById(R.id.txt_fullname);
         txt_username    = (TextView) findViewById(R.id.txt_username);
@@ -43,7 +50,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setDataUser(){
-        session = new LoginSession(HomeActivity.this);
         Glide.with(HomeActivity.this).load(session.getSession_url_avatar()).into(avatar);
         txt_fullname.setText(session.getSes_fullname());
         txt_username.setText(session.getSes_username());
@@ -52,8 +58,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void getLoveDataList(){
-        apiRequest = new ApiRequest(HomeActivity.this);
-        apiRequest.getLoveList(session.getSes_token());
+        api = new ApiRequest(HomeActivity.this);
+        api.getLoveList(session.getSes_token());
     }
 
     private void setData(){
@@ -67,10 +73,48 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void _onRequestFailed(){
-
+        showNotice("Gagal mendapatkan data");
     }
 
     public void _onError(){
+        showNotice("Error, something wrong!");
+    }
 
+    private void _doLogout(){
+        session.doLogout();
+        showNotice("Logout");
+    }
+
+    private void showNotice(String message){
+        Toast.makeText(HomeActivity.this, message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                    _doLogout();
+                    onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.d("res","resume");
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.d("res","pause");
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        Log.d("res","stop");
     }
 }

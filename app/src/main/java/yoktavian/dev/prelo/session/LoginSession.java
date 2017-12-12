@@ -35,37 +35,46 @@ public class LoginSession {
         prefsEditor.commit();
     }
 
-
     public String getSes_fullname(){
-        SharedPreferences myPrefs = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
-        String result = myPrefs.getString(Session_fullname,"");
+        SharedPreferences myPrefs   = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
+        String result               = myPrefs.getString(Session_fullname,"");
         return result;
     }
     public String getSes_username(){
-        SharedPreferences myPrefs = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
-        String result = myPrefs.getString(Session_fullname,"");
+        SharedPreferences myPrefs   = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
+        String result               = myPrefs.getString(Session_fullname,"");
         return result;
     }
     public String getSes_email(){
-        SharedPreferences myPrefs = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
-        String result = myPrefs.getString(Session_email,"");
+        SharedPreferences myPrefs   = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
+        String result               = myPrefs.getString(Session_email,"");
         return result;
     }
     public String getSes_alamat(){
-        SharedPreferences myPrefs = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
-        String result = myPrefs.getString(Session_alamat,"");
+        SharedPreferences myPrefs   = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
+        String result               = myPrefs.getString(Session_alamat,"");
         return result;
     }
     public String getSession_url_avatar(){
-        SharedPreferences myPrefs = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
-        String result = myPrefs.getString(Session_url_avatar,"");
+        SharedPreferences myPrefs   = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
+        String result               = myPrefs.getString(Session_url_avatar,"");
         return result;
     }
     public String getSes_token(){
-        SharedPreferences myPrefs = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
-        String result = myPrefs.getString(Session_token,"");
+        SharedPreferences myPrefs   = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
+        String result               = myPrefs.getString(Session_token,"");
         return result;
     }
 
-
+    public void doLogout(){
+        SharedPreferences myPrefs       = mcontext.getSharedPreferences("default", mcontext.MODE_PRIVATE);
+        SharedPreferences.Editor editor = myPrefs.edit();
+        editor.remove(Session_fullname);
+        editor.remove(Session_username);
+        editor.remove(Session_email);
+        editor.remove(Session_alamat);
+        editor.remove(Session_url_avatar);
+        editor.remove(Session_token);
+        editor.commit();
+    }
 }

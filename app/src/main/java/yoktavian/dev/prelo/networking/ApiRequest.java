@@ -82,13 +82,13 @@ public class ApiRequest {
                 if (response.isSuccessful()) {
                     ((HomeActivity)mcontext)._onRequestSuccess(response.body().getList());
                 } else {
-                    Log.d("res", "failed");
+                    ((HomeActivity)mcontext)._onRequestFailed();
                 }
             }
 
             @Override
             public void onFailure(Call<DataLoveList> call, Throwable t) {
-                Log.d("res", "error");
+                ((HomeActivity)mcontext)._onError();
             }
         });
     }
