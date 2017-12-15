@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="yoktavian.dev.prelo.CheckoutActivity">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardviewData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/barChechout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="8dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="checkout"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/barIdtransaksi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/barChechout"
+                android:padding="8dp"
+                >
+
+                <TextView
+                    android:id="@+id/txt_title_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Transaksi ID anda : "
+                    />
+
+                <TextView
+                    android:id="@+id/txt_id"
+                    android:layout_below="@+id/txt_title_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="sadf1asdfa"
+                    android:textColor="@color/colorPrimary"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/barTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/barIdtransaksi"
+                android:padding="8dp"
+                >
+                <TextView
+                    android:id="@+id/txt_title_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total pembayaran : "
+                    />
+                <TextView
+                    android:id="@+id/txt_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_title_total"
+                    android:text="ssdfasfd"
+                    android:textColor="@color/colorPrimary"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/spaceBar"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/barTotal"
+                android:background="#20000000"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spaceBar"
+                android:padding="8dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bayar sebelum "
+                    android:textSize="18sp"
+                    android:textColor="@color/colorPrimary"
+                    />
+                <TextView
+                    android:id="@+id/txt_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/colorRed"
+                    android:layout_centerVertical="true"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

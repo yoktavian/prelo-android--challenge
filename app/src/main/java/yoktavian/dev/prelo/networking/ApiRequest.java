@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import yoktavian.dev.prelo.ActvitiyLogin;
 import yoktavian.dev.prelo.DetailActivity;
 import yoktavian.dev.prelo.HomeActivity;
+import yoktavian.dev.prelo.models.DataCheckout;
 import yoktavian.dev.prelo.models.DataDetail;
 import yoktavian.dev.prelo.models.DataLoveList;
 import yoktavian.dev.prelo.models.DataUser;
@@ -110,6 +116,31 @@ public class ApiRequest {
 
             @Override
             public void onFailure(Call<DataDetail> call, Throwable t) {
+                ((DetailActivity) mcontext)._onSomeThingWrong();
+            }
+        });
+    }
+
+    public void doCheckout(String token, JSONArray id, JsonObject detail){
+        apiClient = ApiUtils.getAPIClient();
+        Map<String, String> map = new HashMap<>();
+        map.put("Authorization", "Token "+token);
+        Call<DataCheckout> call = apiClient.doCheckOut(map, id, detail);
+        call.enqueue(new Callback<DataCheckout>() {
+            @Override
+            public void onResponse(Call<DataCheckout> call, Response<DataCheckout> response) {
+                if (response.isSuccessful()){
+                    Log.d("request ", "success");
+                    ((DetailActivity) mcontext)._onRequestCheckoutSuccess(response.body());
+                } else {
+                    Log.d("request ", "notsuccess");
+                    ((DetailActivity) mcontext)._onRequestCheckoutFailed();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataCheckout> call, Throwable t) {
+                Log.d("request ", "error");
                 ((DetailActivity) mcontext)._onSomeThingWrong();
             }
         });

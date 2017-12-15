@@ -63,8 +63,16 @@ public class DataModel {
         @Expose
         private String pict;
 
+        @SerializedName("phone")
+        @Expose
+        private String phone;
+
         public String getPict() {
             return pict;
+        }
+
+        public String getPhone() {
+            return phone;
         }
     }
 
@@ -81,6 +89,22 @@ public class DataModel {
         @Expose
         private String province_name;
 
+        @SerializedName("postal")
+        @Expose
+        private String postal;
+
+        @SerializedName("province_id")
+        @Expose
+        private String province_id;
+
+        @SerializedName("region_id")
+        @Expose
+        private String region_id;
+
+        @SerializedName("subdistrict_id")
+        @Expose
+        private String subdistrict_id;
+
         public String getSubdistrict_name() {
             return subdistrict_name;
         }
@@ -91,6 +115,22 @@ public class DataModel {
 
         public String getRegion_name() {
             return region_name;
+        }
+
+        public String getPostal() {
+            return postal;
+        }
+
+        public String getProvince_id() {
+            return province_id;
+        }
+
+        public String getRegion_id() {
+            return region_id;
+        }
+
+        public String getSubdistrict_id() {
+            return subdistrict_id;
         }
     }
 }
