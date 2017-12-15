@@ -24,10 +24,12 @@ public class AdapterLoveList extends RecyclerView.Adapter<AdapterLoveList.MyView
 
     private ArrayList<LoveListModel> model;
     private Context mcontext;
+    private final OnItemClickListener listener;
 
-    public AdapterLoveList(Context mcontext, ArrayList<LoveListModel> model){
+    public AdapterLoveList(Context mcontext, ArrayList<LoveListModel> model, OnItemClickListener listener){
         this.mcontext   = mcontext;
         this.model      = model;
+        this.listener   = listener;
     }
 
     @Override
@@ -41,10 +43,15 @@ public class AdapterLoveList extends RecyclerView.Adapter<AdapterLoveList.MyView
     @Override
     public void onBindViewHolder(AdapterLoveList.MyViewHolder holder, int position) {
         final LoveListModel data = model.get(position);
+        holder.click(model.get(position), listener);
         Glide.with(mcontext).load(data.getDisplay_picts().get(0).getAsString())
                             .into(holder.img_photo);
         holder.txt_name.setText(data.getName());
         holder.txt_price.setText("Rp. "+data.getPrice());
+    }
+
+    public interface OnItemClickListener {
+        void onClick(LoveListModel model);
     }
 
     @Override
@@ -62,6 +69,15 @@ public class AdapterLoveList extends RecyclerView.Adapter<AdapterLoveList.MyView
             txt_name  = (TextView) itemView.findViewById(R.id.txt_name);
             txt_price = (TextView) itemView.findViewById(R.id.txt_price);
             img_photo = (ImageView) itemView.findViewById(R.id.img_photo);
+        }
+
+        public void click(final LoveListModel model, final OnItemClickListener listener){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onClick(model);
+                }
+            });
         }
     }
 }

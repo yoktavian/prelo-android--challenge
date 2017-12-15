@@ -9,6 +9,10 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class LoveListModel {
+    @SerializedName("_id")
+    @Expose
+    private String id;
+
     @SerializedName("name")
     @Expose
     private String name;
@@ -20,6 +24,10 @@ public class LoveListModel {
     @SerializedName("display_picts")
     @Expose
     private JsonArray display_picts;
+
+    public String getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

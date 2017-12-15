@@ -9,6 +9,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Url;
+import yoktavian.dev.prelo.models.DataDetail;
 import yoktavian.dev.prelo.models.DataLoveList;
 import yoktavian.dev.prelo.models.DataModel;
 import yoktavian.dev.prelo.models.DataUser;
@@ -26,4 +29,7 @@ public interface ApiClient {
 
     @GET("/api/me/lovelist")
     Call<DataLoveList> getLoveData(@HeaderMap Map<String, String> header);
+
+    @GET("api/product/{id}")
+    Call<DataDetail> getDetail(@Path("id") String id);
 }

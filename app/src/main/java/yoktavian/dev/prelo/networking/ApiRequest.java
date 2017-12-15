@@ -16,7 +16,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import yoktavian.dev.prelo.ActvitiyLogin;
+import yoktavian.dev.prelo.DetailActivity;
 import yoktavian.dev.prelo.HomeActivity;
+import yoktavian.dev.prelo.models.DataDetail;
 import yoktavian.dev.prelo.models.DataLoveList;
 import yoktavian.dev.prelo.models.DataUser;
 
@@ -89,6 +91,26 @@ public class ApiRequest {
             @Override
             public void onFailure(Call<DataLoveList> call, Throwable t) {
                 ((HomeActivity)mcontext)._onError();
+            }
+        });
+    }
+
+    public void getDetail(String id){
+        apiClient = ApiUtils.getAPIClient();
+        Call<DataDetail> call = apiClient.getDetail(id);
+        call.enqueue(new Callback<DataDetail>() {
+            @Override
+            public void onResponse(Call<DataDetail> call, Response<DataDetail> response) {
+                if (response.isSuccessful()) {
+                    ((DetailActivity) mcontext)._onRequestSuccess(response.body());
+                } else {
+                    ((DetailActivity) mcontext)._onRequestFailed();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataDetail> call, Throwable t) {
+                ((DetailActivity) mcontext)._onSomeThingWrong();
             }
         });
     }

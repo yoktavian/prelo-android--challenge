@@ -1,5 +1,6 @@
 package yoktavian.dev.prelo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -63,7 +64,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setData(){
-        adapter = new AdapterLoveList(HomeActivity.this, data);
+        adapter = new AdapterLoveList(HomeActivity.this, data, new AdapterLoveList.OnItemClickListener() {
+            @Override
+            public void onClick(LoveListModel model) {
+                Intent i = new Intent(HomeActivity.this, DetailActivity.class);
+                i.putExtra("id", model.getId());
+                startActivity(i);
+            }
+        });
         recyclerView.setAdapter(adapter);
     }
 
