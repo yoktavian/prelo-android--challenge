@@ -5,8 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/Prelo.iml" filepath="$PROJECT_DIR$/Prelo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Prelo-Challenge.iml" filepath="$PROJECT_DIR$/Prelo-Challenge.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/circleimageview/circleimageview.iml" filepath="$PROJECT_DIR$/circleimageview/circleimageview.iml" />
       <module fileurl="file://$PROJECT_DIR$/circleimageview/circleimageview.iml" filepath="$PROJECT_DIR$/circleimageview/circleimageview.iml" />
     </modules>
   </component>
